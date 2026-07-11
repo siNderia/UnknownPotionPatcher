@@ -5,17 +5,12 @@ using Mutagen.Bethesda.Plugins.Order;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 using Noggog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 
 
 namespace UnknownPotions
 {
     public static class MerchantPatcher
     {
-        //private static Lazy<Settings.Settings> _settings = null!;
         private static readonly Dictionary<FormKey, ILeveledItemGetter> ClonedLists = new();
         private static readonly HashSet<FormKey> ActiveLists = new();
         private static readonly Dictionary<FormKey, bool> PotionListCache = new();

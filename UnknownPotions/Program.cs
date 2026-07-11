@@ -7,11 +7,6 @@ using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Skyrim.Records.Tooling;
 using Mutagen.Bethesda.Synthesis;
 using Noggog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 
 namespace UnknownPotions
@@ -72,9 +67,10 @@ namespace UnknownPotions
             if (!_lists.Value.ExplicitTypes.Contains("")) explicitTypeNames.Add(_lists.Value.ExplicitTypes);
 
             //Unknown Potion Keyword
-            if (state.LinkCache.TryResolveIdentifier<IKeywordGetter>("UNK_UnknownPotion", out var unknownKeyword))
+            if (!state.LinkCache.TryResolveIdentifier<IKeywordGetter>("UNK_UnknownPotion", out var unknownKeyword))
             {
-                Console.WriteLine("***Can't Resolve UNK_UnknownPotion Keyword: " + unknownKeyword + " ***");
+                Console.WriteLine("***Can't Resolve UNK_UnknownPotion Keyword: " + unknownKeyword + " THIS IS NOT OKAY***");
+                Thread.Sleep(3000);
             }
 
             //Lists
