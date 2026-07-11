@@ -318,7 +318,7 @@ namespace UnknownPotions
 
                 //TESTING ONLY DON'T FORGET TO DISABLE
                 //Skip if unowned - to speed up for testing
-                if (!placedPotion.Record.Owner.TryResolve(state.LinkCache, out var owner)) continue;
+                //if (!placedPotion.Record.Owner.TryResolve(state.LinkCache, out var owner)) continue;
 
                 //Check if object is an ingestible
                 if (!placedPotion.Record.Base.TryResolve<IIngestibleGetter>(state.LinkCache, out var placedObjectBase)) continue;
