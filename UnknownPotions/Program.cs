@@ -169,7 +169,13 @@ namespace UnknownPotions
                 //Adding randomizer effect to potion
                 newUnknownIngestible.Effects.Add(new Effect()
                 {
-                    BaseEffect = unknownRandomEffect.FormKey.ToNullableLink<IMagicEffectGetter>()
+                    BaseEffect = unknownRandomEffect.FormKey.ToNullableLink<IMagicEffectGetter>(),
+                    Data = new EffectData()
+                    {
+                        Magnitude = 0,
+                        Duration = 0,
+                        Area = 0
+                    }
                 });
 
             }
