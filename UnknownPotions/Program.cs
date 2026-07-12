@@ -66,6 +66,13 @@ namespace UnknownPotions
             if (!_lists.Value.BannedTypes.Contains("")) bannedTypeNames.Add(_lists.Value.BannedTypes);
             if (!_lists.Value.ExplicitTypes.Contains("")) explicitTypeNames.Add(_lists.Value.ExplicitTypes);
 
+            //Unknown Potion Effect
+            if (!state.LinkCache.TryResolve<IMagicEffectGetter>("UNK_RandomEffectPot", out var unknownRandomEffect))
+            {
+                Console.WriteLine("***Can't Resolve UNK_RandomEffectPot Effect: " + unknownRandomEffect + " THIS IS NOT OKAY***");
+                Thread.Sleep(3000);
+            }
+            
             //Unknown Potion Keyword
             if (!state.LinkCache.TryResolveIdentifier<IKeywordGetter>("UNK_UnknownPotion", out var unknownKeyword))
             {
@@ -158,6 +165,13 @@ namespace UnknownPotions
 
                 newUnknownIngestible.Keywords ??= new ExtendedList<IFormLinkGetter<IKeywordGetter>>();
                 newUnknownIngestible.Keywords.Add(unknownKeyword);
+
+                //Adding randomizer effect to potion
+                newUnknownIngestible.Effects.Add(new Effect()
+                {
+                    BaseEffect = (IFormLinkNullable<IMagicEffectGetter>)unknownRandomEffect.ToLink()
+
+                });
 
             }
             Console.WriteLine("--------------------");
