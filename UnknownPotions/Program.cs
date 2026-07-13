@@ -160,7 +160,7 @@ namespace UnknownPotions
 
                 //Potion Modifying
                 newUnknownIngestible.Name = "Unknown Potion";
-                newUnknownIngestible.Value = (newUnknownIngestible.Value / 75) + 20;
+                newUnknownIngestible.Value = (newUnknownIngestible.Value / 3) + 5;
                 newUnknownIngestible.EditorID = "Unk" + newUnknownIngestible.EditorID;
 
                 newUnknownIngestible.Keywords ??= new ExtendedList<IFormLinkGetter<IKeywordGetter>>();
@@ -241,7 +241,7 @@ namespace UnknownPotions
                 foreach (var itemEntry in lvlCopy.Entries.EmptyIfNull())
                 {
                     if (itemEntry.Data is null) continue;
-                    IItemGetter? resolvedEntry = itemEntry.Data.Reference.TryResolve(state.LinkCache);
+                    IItemGetter resolvedEntry = itemEntry.Data.Reference.TryResolve(state.LinkCache);
                     if (_settings.Value.ExtraLogging) Console.WriteLine("Got Entry: " + resolvedEntry);
                     if (resolvedEntry is null) continue;
 

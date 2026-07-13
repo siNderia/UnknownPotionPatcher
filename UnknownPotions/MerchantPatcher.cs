@@ -15,8 +15,8 @@ namespace UnknownPotions
         private static readonly HashSet<FormKey> ActiveLists = new();
         private static readonly Dictionary<FormKey, bool> PotionListCache = new();
 
-        private static ILinkCache<ISkyrimMod, ISkyrimModGetter>? _linkCache;
-        private static IPatcherState<ISkyrimMod, ISkyrimModGetter>? _state;
+        private static ILinkCache<ISkyrimMod, ISkyrimModGetter> _linkCache;
+        private static IPatcherState<ISkyrimMod, ISkyrimModGetter> _state;
 
         private static bool _logging;
 
@@ -101,7 +101,7 @@ namespace UnknownPotions
             Console.WriteLine($"Lists duplicated: {ClonedLists.Count}");
             Console.WriteLine("--------------------");
         }
-        private static ILeveledItemGetter? CloneLeveledList(ILeveledItemGetter source)
+        private static ILeveledItemGetter CloneLeveledList(ILeveledItemGetter source)
         {
             if (_state == null || _linkCache == null) return null;
 
