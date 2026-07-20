@@ -23,7 +23,7 @@ namespace UnknownPotions
 
         private static bool _logging;
 
-        private static List<string> bannedLists = new() { "Unk", "Staff", "EnchArmor", "Scroll", "Inn", "Jewelry", "Robes", "Weapon", "Food", "PerkInvestor", "_MA_", "MiscItems", "Meat", "SublistEnch" };
+        private static List<string> bannedLists = new() { "Unk", "Staff", "EnchArmor", "Scroll", "Inn", "Jewelry", "Robes", "Weapon", "Food", "PerkInvestor", "_MA_", "MiscItems", "Meat", "SublistEnch", "ccBGSS", "OWL_" };
 
         public static void Run(IPatcherState<ISkyrimMod, ISkyrimModGetter> state, ILoadOrder<IModListing<ISkyrimModGetter>> loadOrder, bool logging, List<string> bannedMerchantList)
         {
@@ -35,11 +35,7 @@ namespace UnknownPotions
 
             _linkCache = loadOrder.ToImmutableLinkCache();
 
-            //List<string> bannedLists = new() { "Unk", "Staff", "EnchArmor", "Scroll", "Inn", "Jewelry", "Robes", "Weapon", "Food", "PerkInvestor", "_MA_", "MiscItems", "Meat", "SublistEnch" };
-
             if (!bannedMerchantList.Contains("")) bannedLists.Add(bannedMerchantList);
-            Console.WriteLine(Environment.NewLine + "Banned list: " + Environment.NewLine);
-            bannedLists.ForEach(i => Console.Write("{0}\t", i));
 
             //BEGIN MERCHANT PATCHING
             Console.WriteLine(Environment.NewLine + "Patching Merchant Inventory..." + Environment.NewLine);
