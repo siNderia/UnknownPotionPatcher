@@ -32,9 +32,10 @@ namespace UnknownPotions
 
             _linkCache = loadOrder.ToImmutableLinkCache();
 
-            List<string> bannedLists = new() { "Unk", "Staff", "EnchArmor", "Scroll", "Inn", "Jewelry", "Robes", "Weapon", "Food", "PerkInvestor", "_MA_", "MiscItems", "Meat" };
+            List<string> bannedLists = ["Unk", "Staff", "EnchArmor", "Scroll", "Inn", "Jewelry", "Robes", "Weapon", "Food", "PerkInvestor", "_MA_", "MiscItems", "Meat", "SublistEnch"];
 
             if (!bannedMerchantList.Contains("")) bannedLists.Add(bannedMerchantList);
+            Console.WriteLine(Environment.NewLine + "Banned list: " + bannedLists + Environment.NewLine);
 
             //BEGIN MERCHANT PATCHING
             Console.WriteLine(Environment.NewLine + "Patching Merchant Inventory..." + Environment.NewLine);
