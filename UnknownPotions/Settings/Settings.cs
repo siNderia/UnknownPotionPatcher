@@ -47,7 +47,7 @@ namespace UnknownPotions.Settings
         [MaintainOrder, SettingName("Manual Merchant Cells"), Tooltip("Add EditorIDs of merchant CELL names to patch. - Partial Matches Allowed.")]
         public List<string> MerchantCells = new();
 
-        [MaintainOrder, SettingName("Excluded Leveled Lists"), Tooltip("Add EditorIDs of merchant CONTAINER names the patcher should ignore. - Partial Matches Allowed.")]
+        [MaintainOrder, SettingName("Excluded Merchant Containers"), Tooltip("Add EditorIDs of merchant CONTAINER names the patcher should ignore. - Partial Matches Allowed.")]
         public List<string> BannedContainers = new();
     }
 }

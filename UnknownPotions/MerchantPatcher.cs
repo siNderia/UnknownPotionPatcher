@@ -30,6 +30,8 @@ namespace UnknownPotions
 
             _linkCache = loadOrder.ToImmutableLinkCache();
 
+            List<string> bannedLists = new() { "Unk", "Staff", "EnchArmor", "Scroll", "Inn", "Jewelry", "Robes", "Weapon" };
+
             //BEGIN MERCHANT PATCHING
             Console.WriteLine(Environment.NewLine + "Patching Merchant Inventory..." + Environment.NewLine);
             if (_logging) Thread.Sleep(3500);
@@ -78,7 +80,14 @@ namespace UnknownPotions
                     if (!item.Item.Item.TryResolve<ILeveledItemGetter>(_linkCache, out var leveled)) continue;
                     if (!ContainsPotionRecursive(leveled.FormKey)) continue;
 
-                    var newList = CloneLeveledList(leveled);
+                    //Check list against banned list
+                    if (bannedLists.Any(s => leveled.EditorID.Contains(s)))
+                    {
+                        if (_logging) Console.WriteLine($"Skipping banned list: {leveled.EditorID}");
+                        continue;
+                    }
+
+                        var newList = CloneLeveledList(leveled);
 
                     if (newList != null && newList.FormKey != leveled.FormKey)
                     {
@@ -209,9 +218,7 @@ namespace UnknownPotions
             {
                 result = true;
             }
-            else if (_linkCache.TryResolve<ILeveledItemGetter>(
-                    formKey,
-                    out var list))
+            else if (_linkCache.TryResolve<ILeveledItemGetter>(formKey, out var list))
             {
                 foreach (var entry in list.Entries.EmptyIfNull())
                 {
