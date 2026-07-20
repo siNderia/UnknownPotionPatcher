@@ -1,3 +1,4 @@
+using DynamicData;
 using Mutagen.Bethesda;
 using Mutagen.Bethesda.Plugins;
 using Mutagen.Bethesda.Plugins.Cache;
@@ -5,6 +6,7 @@ using Mutagen.Bethesda.Plugins.Order;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 using Noggog;
+using System.Collections;
 
 
 namespace UnknownPotions
@@ -14,6 +16,7 @@ namespace UnknownPotions
         private static readonly Dictionary<FormKey, ILeveledItemGetter> ClonedLists = new();
         private static readonly HashSet<FormKey> ActiveLists = new();
         private static readonly Dictionary<FormKey, bool> PotionListCache = new();
+        private static Lazy<UnknownPotions.Settings.ManualLists> _lists = null!;
 
         private static ILinkCache<ISkyrimMod, ISkyrimModGetter> _linkCache;
         private static IPatcherState<ISkyrimMod, ISkyrimModGetter> _state;
@@ -30,7 +33,9 @@ namespace UnknownPotions
 
             _linkCache = loadOrder.ToImmutableLinkCache();
 
-            List<string> bannedLists = new() { "Unk", "Staff", "EnchArmor", "Scroll", "Inn", "Jewelry", "Robes", "Weapon" };
+            List<string> bannedLists = new() { "Unk", "Staff", "EnchArmor", "Scroll", "Inn", "Jewelry", "Robes", "Weapon", "Food", "PerkInvestor", "_MA_" };
+
+            if (!_lists.Value.BannedMerchantLists.Contains("")) bannedLists.Add(_lists.Value.BannedMerchantLists);
 
             //BEGIN MERCHANT PATCHING
             Console.WriteLine(Environment.NewLine + "Patching Merchant Inventory..." + Environment.NewLine);
