@@ -308,7 +308,7 @@ namespace UnknownPotions
             Console.WriteLine("--------------------");
 
             //Calls merchant patcher - requires the
-            if (_settings.Value.PatchMerchantsFix) { MerchantPatcher.Run(state, startLoadOrder, _settings.Value.ExtraLogging); }
+            if (_settings.Value.PatchMerchantsFix) { MerchantPatcher.Run(state, startLoadOrder, _settings.Value.ExtraLogging, _lists.Value.BannedMerchantLists); }
 
         }
 
